@@ -119,3 +119,21 @@ class Database:
                 )
 
         return response.json()
+
+    def put_design(self, design, doc):
+        response = requests.put(
+                self._url+f"/_design/{design}",
+                data=json.dumps(doc),
+                headers={"Content-Type": "application/json"},
+                auth=self._req_auth
+                )
+        return response.json()
+
+    def get_design_view(self, design, view, keys):
+        response = requests.get(
+                self._url+f"/_design/{design}/_view/{view}",
+                headers={"Content-Type": "application/json"},
+                auth=self._req_auth
+                )
+        return response.json()
+
